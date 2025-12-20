@@ -216,44 +216,59 @@
 
     // ===== ข้อมูลเกม + รูป =====
     const games = {
-        fps: [
-            { name: "VALORANT", img: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink.svg" },
-            { name: "Counter-Strike 2", img: "https://upload.wikimedia.org/wikipedia/en/6/6e/CS2_Logo.png" },
-            { name: "Overwatch 2", img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Overwatch_2_logo.svg" },
-            { name: "Rainbow Six Siege", img: "https://upload.wikimedia.org/wikipedia/en/9/9a/Tom_Clancy%27s_Rainbow_Six_Siege_logo.svg" }
-        ],
-        moba: [
-            { name: "League of Legends", img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_Logo.png" },
-            { name: "Dota 2", img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Dota_2_Logo.svg" },
-            { name: "ROV", img: "https://upload.wikimedia.org/wikipedia/en/7/7e/Arena_of_Valor_logo.png" },
-            { name: "Heroes of the Storm", img: "https://upload.wikimedia.org/wikipedia/en/6/6b/Heroes_of_the_Storm_logo.png" }
-        ],
-        br: [
-            { name: "PUBG", img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/PUBG_Logo.svg" },
-            { name: "Apex Legends", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/Apex_legends_logo.svg" },
-            { name: "Fortnite", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/FortniteLogo.svg" },
-            { name: "Call of Duty: Warzone", img: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Call_of_Duty_Warzone_Logo.png" }
-        ]
-    };
-
-    function showGames(type) {
-        const container = document.getElementById("gameList");
-        container.innerHTML = "";
-
-        games[type].forEach(game => {
-            const div = document.createElement("div");
-            div.className = "card";
-            div.innerHTML = `
-                <img src="${game.img}" alt="${game.name}">
-                <span>${game.name}</span>
-            `;
-            container.appendChild(div);
-        });
+    fps: [
+        {
+            name: "VALORANT",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
+        },
+        {
+            name: "Counter-Strike 2",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
+        },
+        {
+            name: "Overwatch 2",
+            img: "https://static.playoverwatch.com/img/logos/overwatch-logo-001.png"
+        },
+        {
+            name: "Rainbow Six Siege",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg"
+        }
+    ],
+    moba: [
+        {
+            name: "League of Legends",
+            img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_Logo.png"
+        },
+        {
+            name: "Dota 2",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
+        },
+        {
+            name: "ROV",
+            img: "https://www.arenaofvalor.com/images/logo.png"
+        }
+    ],
+    br: [
+        {
+            name: "PUBG",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg"
+        },
+        {
+            name: "Apex Legends",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg"
+        },
+        {
+            name: "Fortnite",
+            img: "https://cdn2.unrealengine.com/fortnite-logo-1920x1080-1920x1080-4d5c0b3f9c77.jpg"
+        }
+    ]
+};
     }
 </script>
 
 </body>
 </html>
+
 
 
 
