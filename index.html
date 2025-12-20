@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>ESPORT ARENA</title>
 
-    <!-- =====================
-         PRESENTATION LAYER (CSS)
-    ====================== -->
+    <!-- ===== PRESENTATION LAYER (CSS) ===== -->
     <style>
         * { box-sizing: border-box; }
 
@@ -133,9 +131,9 @@
         .card img {
             width: 100%;
             height: 120px;
-            object-fit: contain;
-            margin-bottom: 10px;
+            object-fit: cover;
             background: #000;
+            margin-bottom: 10px;
         }
 
         .card span {
@@ -146,9 +144,7 @@
 </head>
 <body>
 
-<!-- =====================
-     STRUCTURE LAYER (HTML)
-====================== -->
+<!-- ===== STRUCTURE LAYER (HTML) ===== -->
 
 <nav>
     <div class="logo">ESPORT ARENA</div>
@@ -201,9 +197,7 @@
     <p id="message"></p>
 </section>
 
-<!-- =====================
-     BEHAVIOR LAYER (JavaScript)
-====================== -->
+<!-- ===== BEHAVIOR LAYER (JavaScript) ===== -->
 <script>
     function goToAbout() {
         document.getElementById("about").scrollIntoView({ behavior: "smooth" });
@@ -214,61 +208,73 @@
             "คุณพร้อมเข้าสู่โลก Esport ระดับมืออาชีพแล้ว!";
     }
 
-    // ===== ข้อมูลเกม + รูป =====
+    // ===== ข้อมูลเกม + รูป (แก้แล้ว) =====
     const games = {
-    fps: [
-        {
-            name: "VALORANT",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
-        },
-        {
-            name: "Counter-Strike 2",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
-        },
-        {
-            name: "Overwatch 2",
-            img: "https://static.playoverwatch.com/img/logos/overwatch-logo-001.png"
-        },
-        {
-            name: "Rainbow Six Siege",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg"
-        }
-    ],
-    moba: [
-        {
-            name: "League of Legends",
-            img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_Logo.png"
-        },
-        {
-            name: "Dota 2",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
-        },
-        {
-            name: "ROV",
-            img: "https://www.arenaofvalor.com/images/logo.png"
-        }
-    ],
-    br: [
-        {
-            name: "PUBG",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg"
-        },
-        {
-            name: "Apex Legends",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg"
-        },
-        {
-            name: "Fortnite",
-            img: "https://cdn2.unrealengine.com/fortnite-logo-1920x1080-1920x1080-4d5c0b3f9c77.jpg"
-        }
-    ]
-};
+        fps: [
+            {
+                name: "VALORANT",
+                img: "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt9f8a5b4c8c9c3b4b/valorant-logo.png"
+            },
+            {
+                name: "Counter-Strike 2",
+                img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
+            },
+            {
+                name: "Overwatch 2",
+                img: "https://static.playoverwatch.com/img/logos/overwatch-logo-001.png"
+            },
+            {
+                name: "Rainbow Six Siege",
+                img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg"
+            }
+        ],
+        moba: [
+            {
+                name: "League of Legends",
+                img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/League_of_Legends_Logo.png"
+            },
+            {
+                name: "Dota 2",
+                img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
+            },
+            {
+                name: "ROV",
+                img: "https://www.arenaofvalor.com/images/logo.png"
+            }
+        ],
+        br: [
+            {
+                name: "PUBG",
+                img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg"
+            },
+            {
+                name: "Apex Legends",
+                img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg"
+            },
+            {
+                name: "Fortnite",
+                img: "https://cdn2.unrealengine.com/fortnite-logo-1920x1080-1920x1080-4d5c0b3f9c77.jpg"
+            }
+        ]
+    };
+
+    function showGames(type) {
+        const container = document.getElementById("gameList");
+        container.innerHTML = "";
+
+        games[type].forEach(game => {
+            const div = document.createElement("div");
+            div.className = "card";
+
+            div.innerHTML = `
+                <img src="${game.img}" alt="${game.name}" referrerpolicy="no-referrer">
+                <span>${game.name}</span>
+            `;
+
+            container.appendChild(div);
+        });
     }
 </script>
 
 </body>
 </html>
-
-
-
-
