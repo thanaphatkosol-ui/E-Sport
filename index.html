@@ -208,56 +208,25 @@
             "คุณพร้อมเข้าสู่โลก Esport ระดับมืออาชีพแล้ว!";
     }
 
-    // ===== ข้อมูลเกม + รูป (แก้แล้ว) =====
-const games = {
-    fps: [
-        {
-            name: "VALORANT",
-            img: "https://raw.githubusercontent.com/konpa/devicon/master/icons/riotgames/riotgames-original.svg"
-        },
-        {
-            name: "Counter-Strike 2",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg"
-        },
-        {
-            name: "Overwatch 2",
-            img: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/55/Overwatch_2_logo.svg"
-        },
-        {
-            name: "Rainbow Six Siege",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg"
-        }
-    ],
-    moba: [
-        {
-            name: "League of Legends",
-            img: "https://static.wikia.nocookie.net/leagueoflegends/images/0/05/League_of_Legends_logo.png"
-        },
-        {
-            name: "Dota 2",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
-        },
-        {
-            name: "ROV",
-            img: "https://static.wikia.nocookie.net/arenaofvalor/images/5/55/Arena_of_Valor_logo.png"
-        }
-    ],
-    br: [
-        {
-            name: "PUBG",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg"
-        },
-        {
-            name: "Apex Legends",
-            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg"
-        },
-        {
-            name: "Fortnite",
-            img: "https://static.wikia.nocookie.net/fortnite/images/7/7c/Fortnite_Logo.png"
-        }
-    ]
-};
-
+    // ===== ข้อมูลเกม =====
+    const games = {
+        fps: [
+            { name: "VALORANT", img: "https://raw.githubusercontent.com/konpa/devicon/master/icons/riotgames/riotgames-original.svg" },
+            { name: "Counter-Strike 2", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" },
+            { name: "Overwatch 2", img: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/55/Overwatch_2_logo.svg" },
+            { name: "Rainbow Six Siege", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg" }
+        ],
+        moba: [
+            { name: "League of Legends", img: "https://static.wikia.nocookie.net/leagueoflegends/images/0/05/League_of_Legends_logo.png" },
+            { name: "Dota 2", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg" },
+            { name: "ROV", img: "https://static.wikia.nocookie.net/arenaofvalor/images/5/55/Arena_of_Valor_logo.png" }
+        ],
+        br: [
+            { name: "PUBG", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg" },
+            { name: "Apex Legends", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg" },
+            { name: "Fortnite", img: "https://static.wikia.nocookie.net/fortnite/images/7/7c/Fortnite_Logo.png" }
+        ]
+    };
 
     function showGames(type) {
         const container = document.getElementById("gameList");
@@ -268,7 +237,12 @@ const games = {
             div.className = "card";
 
             div.innerHTML = `
-                <img src="${game.img}" alt="${game.name}" referrerpolicy="no-referrer">
+                <img
+                    src="${game.img}"
+                    alt="${game.name}"
+                    referrerpolicy="no-referrer"
+                    onerror="this.src='https://via.placeholder.com/220x120?text=No+Image'"
+                >
                 <span>${game.name}</span>
             `;
 
@@ -279,4 +253,3 @@ const games = {
 
 </body>
 </html>
-
