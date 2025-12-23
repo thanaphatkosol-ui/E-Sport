@@ -1,151 +1,173 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>ESPORT ARENA</title>
+<meta charset="UTF-8">
+<title>ESPORT ARENA</title>
 
-    <!-- ===== PRESENTATION LAYER (CSS) ===== -->
-    <style>
-        * { box-sizing: border-box; }
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0b0b0b;
+    color:#fff
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0b0b0b;
-            color: #ffffff;
-        }
+/* ===== NAV ===== */
+nav{
+    position:fixed;
+    top:0;width:100%;
+    padding:15px 40px;
+    background:rgba(0,0,0,.85);
+    display:flex;
+    justify-content:space-between;
+    z-index:100
+}
+nav .logo{color:#ff4655;font-weight:bold}
+nav ul{list-style:none;display:flex;gap:20px}
+nav a{color:white;text-decoration:none}
+nav a:hover{color:#ff4655}
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.7);
-            z-index: 100;
-        }
+/* ===== HERO ===== */
+.hero{
+    min-height:85vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:radial-gradient(circle at top,#1a1a1a,#000);
+    padding-top:100px
+}
+.hero h1{font-size:64px;color:#ff4655}
 
-        nav .logo {
-            color: #ff4655;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+/* ===== SECTION ===== */
+section{padding:100px 50px;text-align:center}
+.dark{background:#121212}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
+/* ===== BUTTON ===== */
+button{
+    background:#ff4655;
+    border:none;
+    color:white;
+    padding:12px 30px;
+    cursor:pointer
+}
+button:hover{background:#e03a48}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
+/* ===== CARDS ===== */
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px
+}
+.card{
+    width:220px;
+    background:#0b0b0b;
+    border:1px solid #ff4655;
+    padding:15px;
+    transition:.3s
+}
+.card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 15px 40px rgba(255,70,85,.3)
+}
+.card img{width:100%;height:120px;object-fit:cover}
+.card span{display:block;margin:10px 0;font-weight:bold}
 
-        nav a:hover { color: #ff4655; }
+/* ===== DETAIL PAGE ===== */
+#detailPage{
+    display:none;
+    min-height:100vh;
+    padding:120px 60px
+}
+.detail-container{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    text-align:left
+}
+.detail-container img{
+    width:100%;
+    border:2px solid #ff4655
+}
+.detail-info h1{color:#ff4655}
+.detail-stats{
+    margin-top:20px;
+    padding:15px;
+    background:#121212;
+    border-left:4px solid #ff4655
+}
+.back-btn{
+    background:none;
+    border:1px solid #ff4655;
+    color:white;
+    margin-bottom:30px
+}
+/* ===== RANDOM GAME SECTION ===== */
+.random-box{
+    margin: 60px auto;
+    padding: 30px;
+    max-width: 600px;
+    background: #121212;
+    border: 2px dashed #ff4655;
+}
 
-        /* HERO */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at top, #1a1a1a, #000000);
-            padding-top: 60px;
-        }
+.random-box h2{
+    color:#ff4655;
+    margin-bottom:10px;
+}
 
-        .hero h1 {
-            font-size: 72px;
-            color: #ff4655;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-        }
+#randomResult{
+    margin-top:15px;
+    font-size:18px;
+    color:#ff4655;
+    font-weight:bold;
+    animation: fadeIn .4s ease;
+}
 
-        .hero p { color: #cccccc; }
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+/* ===== RANDOM GAME POPUP ===== */
+.popup-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
 
-        .student {
-            margin: 20px 0;
-            font-size: 14px;
-            color: #aaaaaa;
-        }
+.popup-box{
+    background: #111;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #ff4655;
+    max-width: 400px;
+}
 
-        button {
-            background-color: #ff4655;
-            border: none;
-            color: white;
-            padding: 15px 35px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.popup-box img{
+    width: 100%;
+    margin-bottom: 15px;
+}
 
-        button:hover { background-color: #e03a48; }
-
-        /* SECTION */
-        section {
-            padding: 100px 60px;
-            text-align: center;
-        }
-
-        section h2 {
-            color: #ff4655;
-            margin-bottom: 20px;
-        }
-
-        .dark { background-color: #121212; }
-
-        /* GAME GENRE */
-        .genre-buttons {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .card {
-            width: 220px;
-            padding: 15px;
-            border: 1px solid #ff4655;
-            background-color: #0b0b0b;
-            text-align: center;
-            transition: transform .2s;
-        }
-
-        .card:hover { transform: scale(1.05); }
-
-        .card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            background: #000;
-            margin-bottom: 10px;
-        }
-
-        .card span {
-            display: block;
-            font-weight: bold;
-        }
-    </style>
+</style>
 </head>
+<!-- RANDOM GAME POPUP -->
+<div id="randomPopup" class="popup-overlay" onclick="closePopup()">
+    <div class="popup-box" onclick="event.stopPropagation()">
+        <img id="popupImg">
+        <h2 id="popupTitle"></h2>
+        <p id="popupGenre"></p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
 <body>
-
-<!-- ===== STRUCTURE LAYER (HTML) ===== -->
-
 <nav>
     <div class="logo">ESPORT ARENA</div>
     <ul>
@@ -155,106 +177,341 @@
     </ul>
 </nav>
 
+<!-- ===== MAIN PAGE ===== -->
+<div id="mainPage">
+
 <div class="hero">
     <div>
         <h1>ENTER THE ARENA</h1>
         <p>สนามแข่งขัน Esport ระดับมืออาชีพ</p>
-
-        <p class="student">
-            ชื่อ: <strong>Thanaphat Kosol</strong><br>
-            รหัสนักศึกษา: <strong>6704051612191</strong>
-        </p>
-
-        <button onclick="goToAbout()">GET STARTED</button>
+        <p>ชื่อ: Thanaphat Kosol<br>รหัสนักศึกษา: 6704051612191</p>
+        <button onclick="scrollToSection('games')">GET STARTED</button>
     </div>
 </div>
 
 <section id="about">
     <h2>WHAT IS ESPORT?</h2>
-    <p>
-        Esport คือการแข่งขันวิดีโอเกมระดับมืออาชีพ
-        มีระบบลีก ทีม ผู้เล่น และเงินรางวัลระดับโลก
-    </p>
+    <p>การแข่งขันเกมระดับอาชีพ มีลีกและเงินรางวัลระดับโลก</p>
 </section>
 
 <section id="games" class="dark">
     <h2>POPULAR ESPORT GENRES</h2>
-
-    <div class="genre-buttons">
-        <button onclick="showGames('fps')">FPS</button>
-        <button onclick="showGames('moba')">MOBA</button>
-        <button onclick="showGames('br')">BATTLE ROYALE</button>
-    </div>
-
-    <div id="gameList" class="cards">
-        <p>กรุณาเลือกหมวดเกม</p>
-    </div>
+    <button onclick="showGames('fps')">FPS</button>
+    <button onclick="showGames('moba')">MOBA</button>
+    <button onclick="showGames('br')">BATTLE ROYALE</button>
+    <p id="count"></p>
+    <div id="gameList" class="cards"></div>
 </section>
+<section id="randomGame" class="dark">
+    <h2>🎲 สุ่มเกมที่คุณจะได้เป็นนักกีฬา Esport</h2>
+    <p>ลองดูสิว่าเส้นทางนักกีฬา Esport ของคุณจะเริ่มจากเกมอะไร</p>
 
+    <button onclick="randomEsportGame()">สุ่มเกม</button>
+
+    <div id="randomResult" style="margin-top:25px; font-size:18px;"></div>
+</section>
 <section id="join">
     <h2>READY TO COMPETE?</h2>
     <button onclick="joinArena()">JOIN THE ARENA</button>
     <p id="message"></p>
 </section>
 
-<!-- ===== BEHAVIOR LAYER (JavaScript) ===== -->
+</div>
+
+<!-- ===== DETAIL PAGE ===== -->
+<section id="detailPage">
+    <button class="back-btn" onclick="backToGames()">← BACK</button>
+    <div class="detail-container">
+        <img id="detailImg">
+        <div class="detail-info">
+            <h1 id="detailTitle"></h1>
+            <p id="detailDesc"></p>
+            <div class="detail-stats">
+                <p><b>เงินรางวัล:</b> <span id="detailPrize"></span></p>
+                <p><b>ทัวร์นาเมนต์:</b> <span id="detailTour"></span></p>
+                <p><b>ทีมเด่น:</b> <span id="detailTeams"></span></p>
+                <p><b>รายการโลก:</b> <span id="detailEvent"></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script>
-    function goToAbout() {
-        document.getElementById("about").scrollIntoView({ behavior: "smooth" });
-    }
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"})
+}
+function joinArena(){
+    document.getElementById("message").innerText="คุณพร้อมที่จะเริ่มต้นเป็นนักกีฬา E-Sport แล้ว!"
+}
 
-    function joinArena() {
-        document.getElementById("message").innerText =
-            "คุณพร้อมเข้าสู่โลก Esport ระดับมืออาชีพแล้ว!";
-    }
+/* ===== DATA ===== */
+const games = {
+    fps: [
+        {
+            name: "VALORANT",
+            img: "https://www.nvidia.com/content/dam/en-zz/Solutions/GeForce/campaigns/frames-win-games/cod-warzone/valorant-og-100.jpg",
+            genre: "FPS",
+            developer: "Riot Games",
+            platform: "PC",
+            desc: "เกม FPS เชิงกลยุทธ์แบบ 5v5 เน้นทีมเวิร์กและตัวละครที่มีสกิลเฉพาะ",
+            stats: {
+                prize: "$10,000,000+",
+                tournaments: "30+ ต่อปี",
+                topTeams: ["Sentinels", "Fnatic", "Paper Rex" , "Full Sense"],
+                worldEvent: "VALORANT Champions"
+            }
+        },
+        {
+            name: "Counter-Strike 2",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
+            genre: "FPS",
+            developer: "Valve",
+            platform: "PC",
+            desc: "เกมยิงแข่งขันระดับโลก เน้นทักษะการยิงและการวางแผนเป็นทีม",
+            stats: {
+                prize: "$20,000,000+",
+                tournaments: "50+ ต่อปี",
+                topTeams: ["Vitality", "NAVI", "FaZe Clan", "G2 Esports"],
+                worldEvent: "PGL Major"
+            }
+        },
+        {
+            name: "Overwatch 2",
+            img: "https://images.wallpapersden.com/image/download/overwatch-2-4k-8k_a2xpa2iUmZqaraWkpJRtaWVmrWhrZW4.jpg",
+            genre: "FPS",
+            developer: "Blizzard Entertainment",
+            platform: "PC / Console",
+            desc: "เกมยิงแบบทีมฮีโร่ มีตัวละครหลากหลายและบทบาทเฉพาะ",
+            stats: {
+                prize: "$5,000,000+",
+                tournaments: "20+ ต่อปี",
+                topTeams: ["Dallas Fuel", "Seoul Infernal"],
+                worldEvent: "Overwatch League Finals"
+            }
+        },
+        {
+            name: "Rainbow Six Siege",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg",
+            genre: "FPS",
+            developer: "Ubisoft",
+            platform: "PC / Console",
+            desc: "FPS เชิงยุทธวิธี เน้นการวางแผน การบุก และการป้องกัน",
+            stats: {
+                prize: "$8,000,000+",
+                tournaments: "20+ ต่อปี",
+                topTeams: ["G2 Esports", "FaZe Clan"],
+                worldEvent: "Six Invitational"
+            }
+        },
+        {
+            name: "Call of Duty",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/header.jpg",
+            genre: "FPS",
+            developer: "Activision",
+            platform: "PC / Console",
+            desc: "FPS แอ็กชันรวดเร็ว มีลีกแข่งขันระดับอาชีพ",
+            stats: {
+                prize: "$6,000,000+",
+                tournaments: "15+ ต่อปี",
+                topTeams: ["OpTic Texas", "Atlanta FaZe"],
+                worldEvent: "Call of Duty League Championship"
+            }
+        }
+    ],
 
-    // ===== ข้อมูลเกม =====
-    const games = {
-        fps: [
-            { name: "VALORANT", img: "https://www.nvidia.com/content/dam/en-zz/Solutions/GeForce/campaigns/frames-win-games/cod-warzone/valorant-og-100.jpg" },
-            { name: "Counter-Strike 2", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" },
-            { name: "Overwatch 2", img: "https://images.wallpapersden.com/image/download/overwatch-2-4k-8k_a2xpa2iUmZqaraWkpJRtaWVmrWhrZW4.jpg" },
-            { name: "Rainbow Six Siege", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg" }
-        ],
-        moba: [
-            { name: "League of Legends", img: "https://blogs.nvidia.com/wp-content/uploads/2021/09/gfn-spotlight-league-of-legends-tw-li-2048x1024-1.jpg" },
-            { name: "Dota 2", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg" },
-            { name: "ROV", img: "https://i.ytimg.com/vi/sRsAo10ztf4/maxresdefault.jpg" }
-        ],
-        br: [
-            { name: "PUBG", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg" },
-            { name: "Apex Legends", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg" },
-            { name: "Fortnite", img: "https://wallpapers.com/images/hd/fortnite-1920x1080-hd-cvavgntkwzkn72rg.jpg" }
-        ]
-    };
+    moba: [
+        {
+            name: "League of Legends",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBxuVOY6J40Uq0ADM6RvXQicS5aDp02mpKxA&s",
+            genre: "MOBA",
+            developer: "Riot Games",
+            platform: "PC",
+            desc: "MOBA 5v5 ที่ได้รับความนิยมสูงสุด มีลีกอาชีพทั่วโลก",
+            stats: {
+                prize: "$100,000,000+",
+                tournaments: "40+ ต่อปี",
+                topTeams: ["T1", "Gen.G", "JD Gaming"],
+                worldEvent: "World Championship (Worlds)"
+            }
+        },
+        {
+            name: "Dota 2",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg",
+            genre: "MOBA",
+            developer: "Valve",
+            platform: "PC",
+            desc: "MOBA เชิงลึก เน้นกลยุทธ์ระดับสูงและการแข่งขันนานาชาติ",
+            stats: {
+                prize: "$300,000,000+",
+                tournaments: "25+ ต่อปี",
+                topTeams: ["Team Spirit", "OG", "LGD"],
+                worldEvent: "The International"
+            }
+        },
+        {
+            name: "ROV",
+            img: "https://i.ytimg.com/vi/sRsAo10ztf4/maxresdefault.jpg",
+            genre: "MOBA",
+            developer: "Tencent Games",
+            platform: "Mobile",
+            desc: "MOBA บนมือถือ แข่งขันรวดเร็ว ได้รับความนิยมสูงในเอเชีย",
+            stats: {
+                prize: "$5,000,000+",
+                tournaments: "30+ ต่อปี",
+                topTeams: ["Bacon Time", "EArena", "Full Sense"],
+                worldEvent: "ROV World Cup"
+            }
+        },
+        {
+            name: "Mobile Legends",
+            img: "data:image/jpeg;base64,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",
+            genre: "MOBA",
+            developer: "Moonton",
+            platform: "Mobile",
+            desc: "MOBA บนมือถือที่มีลีกแข่งระดับโลก",
+            stats: {
+                prize: "$10,000,000+",
+                tournaments: "20+ ต่อปี",
+                topTeams: ["Blacklist", "Echo"],
+                worldEvent: "M World Championship"
+            }
+        }
+    ],
 
-    function showGames(type) {
-        const container = document.getElementById("gameList");
-        container.innerHTML = "";
+    br: [
+        {
+            name: "PUBG",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg",
+            genre: "Battle Royale",
+            developer: "Krafton",
+            platform: "PC / Console / Mobile",
+            desc: "Battle Royale สมจริง เอาชีวิตรอดในแผนที่ขนาดใหญ่",
+            stats: {
+                prize: "$15,000,000+",
+                tournaments: "20+ ต่อปี",
+                topTeams: ["NAVI", "FaZe Clan", "Full Sense"],
+                worldEvent: "PUBG Global Championship"
+            }
+        },
+        {
+            name: "Apex Legends",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg",
+            genre: "Battle Royale",
+            developer: "Respawn Entertainment",
+            platform: "PC / Console",
+            desc: "Battle Royale ความเร็วสูง ตัวละครมีสกิลเฉพาะ",
+            stats: {
+                prize: "$8,000,000+",
+                tournaments: "15+ ต่อปี",
+                topTeams: ["TSM", "DarkZero"],
+                worldEvent: "ALGS Championship"
+            }
+        },
+        {
+            name: "Fortnite",
+            img: "https://wallpapers.com/images/hd/fortnite-1920x1080-hd-cvavgntkwzkn72rg.jpg",
+            genre: "Battle Royale",
+            developer: "Epic Games",
+            platform: "PC / Console / Mobile",
+            desc: "Battle Royale สไตล์การ์ตูน มีระบบสร้างและอีเวนต์พิเศษ",
+            stats: {
+                prize: "$150,000,000+",
+                tournaments: "25+ ต่อปี",
+                topTeams: ["Bugha", "Aqua"],
+                worldEvent: "Fortnite World Cup"
+            }
+        },
+        {
+            name: "Warzone",
+            img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1962663/header.jpg",
+            genre: "Battle Royale",
+            developer: "Activision",
+            platform: "PC / Console",
+            desc: "Battle Royale จากจักรวาล Call of Duty",
+            stats: {
+                prize: "$7,000,000+",
+                tournaments: "15+ ต่อปี",
+                topTeams: ["Team Aydan"],
+                worldEvent: "World Series of Warzone"
+            }
+        }
+    ]
+};
 
-        games[type].forEach(game => {
-            const div = document.createElement("div");
-            div.className = "card";
+let currentList=[];
 
-            div.innerHTML = `
-                <img
-                    src="${game.img}"
-                    alt="${game.name}"
-                    referrerpolicy="no-referrer"
-                    onerror="this.src='https://via.placeholder.com/220x120?text=No+Image'"
-                >
-                <span>${game.name}</span>
-            `;
+/* ===== SHOW GAMES ===== */
+function showGames(type){
+    currentList=games[type];
+    gameList.innerHTML="";
+    count.innerText=`มี ${currentList.length} เกม`;
+    currentList.forEach((g,i)=>{
+        gameList.innerHTML+=`
+        <div class="card">
+            <img src="${g.img}">
+            <span>${g.name}</span>
+            <button onclick="openDetail(${i})">DETAIL</button>
+        </div>`;
+    });
+}
 
-            container.appendChild(div);
+/* ===== DETAIL ===== */
+function openDetail(index){
+    lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    const g = currentList[index];
+    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("detailPage").style.display = "block";
+
+    detailImg.src = g.img;
+    detailTitle.innerText = g.name;
+    detailDesc.innerText = g.desc;
+    detailPrize.innerText = g.stats.prize;
+    detailTour.innerText = g.stats.tournaments;
+    detailTeams.innerText = g.stats.topTeams.join(", ");
+    detailEvent.innerText = g.stats.worldEvent;
+
+    
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+function backToGames(){
+    document.getElementById("detailPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+    requestAnimationFrame(() => {
+        window.scrollTo({
+            top: lastScrollY,
+            behavior: "smooth"
         });
-    }
+    });
+}
+function randomEsportGame(){
+    const allGames = [
+        ...games.fps,
+        ...games.moba,
+        ...games.br
+    ];
+
+    const random = allGames[Math.floor(Math.random() * allGames.length)];
+
+    // ใส่ข้อมูล popup
+    popupImg.src = random.img;
+    popupTitle.innerText = random.name;
+    popupGenre.innerText = "แนวเกม: " + random.genre;
+
+    // เปิด popup
+    document.getElementById("randomPopup").style.display = "flex";
+}
+
+/* ====== เพิ่มตรงนี้เลย ====== */
+function closePopup(){
+    document.getElementById("randomPopup").style.display = "none";
+}
+
+
 </script>
+</div>
 
 </body>
 </html>
-
-
-
-
-
